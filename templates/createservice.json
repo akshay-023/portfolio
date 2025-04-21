@@ -2,8 +2,8 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "staticSites_portfolio_name": {
-            "defaultValue": "portfolio",
+        "staticSites_swa_clouddev_02_name": {
+            "defaultValue": "swa-clouddev-02",
             "type": "String"
         }
     },
@@ -12,14 +12,14 @@
         {
             "type": "Microsoft.Web/staticSites",
             "apiVersion": "2024-04-01",
-            "name": "[parameters('staticSites_portfolio_name')]",
-            "location": "East US 2",
+            "name": "[parameters('staticSites_swa_clouddev_02_name')]",
+            "location": "Central US",
             "sku": {
                 "name": "Free",
                 "tier": "Free"
             },
             "properties": {
-                "repositoryUrl": "[concat('https://github.com/AvantiKantumuchu/', parameters('staticSites_portfolio_name'))]",
+                "repositoryUrl": "https://github.com/akshay-023/portfolio",
                 "branch": "main",
                 "stagingEnvironmentPolicy": "Enabled",
                 "allowConfigFileUpdates": true,
@@ -30,10 +30,10 @@
         {
             "type": "Microsoft.Web/staticSites/basicAuth",
             "apiVersion": "2024-04-01",
-            "name": "[concat(parameters('staticSites_portfolio_name'), '/default')]",
-            "location": "East US 2",
+            "name": "[concat(parameters('staticSites_swa_clouddev_02_name'), '/default')]",
+            "location": "Central US",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/staticSites', parameters('staticSites_portfolio_name'))]"
+                "[resourceId('Microsoft.Web/staticSites', parameters('staticSites_swa_clouddev_02_name'))]"
             ],
             "properties": {
                 "applicableEnvironmentsMode": "SpecifiedEnvironments"
